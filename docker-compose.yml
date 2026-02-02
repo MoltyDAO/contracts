@@ -1,0 +1,13 @@
+services:
+  foundry:
+    build: .
+    container_name: moltydao-dev
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    command: tail -f /dev/null
+    env_file:
+      - .env
+    ports:
+      - "8545:8545"
+      - "3000:3000"
