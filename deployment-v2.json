@@ -1,0 +1,15 @@
+{
+  "network": "base_sepolia",
+  "version": "2",
+  "token": "0xCebE0Fe7a3f5eaCacE1Ad4b633EfC66110CfC615",
+  "governor": "0xd1E544A8f286D0373Bf8E9d0695887261a30B07e",
+  "guardian": "0x4D7765B7Da7384F0c966681cbE90C830Df2c6275",
+  "deployer": "0x4D7765B7Da7384F0c966681cbE90C830Df2c6275",
+  "timestamp": "1770061062",
+  "explorer": "https://sepolia.basescan.org",
+  "improvements": [
+    "20% quorum (increased from 4%)",
+    "1M token proposal threshold",
+    "Guardian emergency pause functionality"
+  ]
+}
