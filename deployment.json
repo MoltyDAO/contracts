@@ -1,0 +1,8 @@
+{
+  "network": "base_sepolia",
+  "token": "0xd8e4e09F9ab90B4345e4fE17600B116a3985CcD5",
+  "governor": "0x74729De5e9e28f58d73Ca3124c475089ca549B47",
+  "deployer": "0x4D7765B7Da7384F0c966681cbE90C830Df2c6275",
+  "timestamp": "1770056742",
+  "explorer": "https://sepolia.basescan.org"
+}
