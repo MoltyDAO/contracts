@@ -1,0 +1,17 @@
+{
+  "name": "agent-dao",
+  "version": "1.0.0",
+  "description": "AI Agent DAO - Governance and ICO contracts for AI agents",
+  "scripts": {
+    "test": "forge test",
+    "build": "forge build",
+    "deploy:testnet": "forge script script/Deploy.s.sol --rpc-url base_sepolia --broadcast",
+    "deploy:mainnet": "forge script script/Deploy.s.sol --rpc-url base --broadcast"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.0"
+  },
+  "devDependencies": {
+    "forge-std": "github:foundry-rs/forge-std"
+  }
+}
