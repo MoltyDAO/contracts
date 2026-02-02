@@ -29,14 +29,15 @@ contract AgentDAOToken is ERC20, ERC20Permit, Ownable {
     
     /**
      * @notice Purchase tokens in the ICO
-     * @param amount Amount of tokens to buy (in wei)
+     * @param tokenAmount Amount of tokens to buy (in whole tokens, not wei)
      */
-    function buyTokens(uint256 amount) external payable {
-        require(amount > 0, "Amount must be > 0");
-        require(amount <= balanceOf(address(this)), "Not enough tokens left");
+    function buyTokens(uint256 tokenAmount) external payable {
+        require(tokenAmount > 0, "Amount must be > 0");
+        uint256 weiAmount = tokenAmount * 10**18;
+        require(weiAmount <= balanceOf(address(this)), "Not enough tokens left");
         
-        // Fixed price: 1 ETH = 1,000,000 tokens (0.000001 ETH per token)
-        uint256 cost = (amount * 1e18) / 1_000_000;
+        // Fixed price: 1 ETH = 1,000,000 tokens
+        uint256 cost = (tokenAmount * 1e18) / 1_000_000;
         require(msg.value >= cost, "Insufficient ETH");
         
         // Refund excess ETH
@@ -45,10 +46,10 @@ contract AgentDAOToken is ERC20, ERC20Permit, Ownable {
         }
         
         // Transfer tokens
-        _transfer(address(this), msg.sender, amount);
-        totalSold += amount;
+        _transfer(address(this), msg.sender, weiAmount);
+        totalSold += weiAmount;
         
-        emit TokensPurchased(msg.sender, amount, cost);
+        emit TokensPurchased(msg.sender, weiAmount, cost);
     }
     
     /**

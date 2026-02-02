@@ -5,9 +5,10 @@ services:
     volumes:
       - .:/workspace
     working_dir: /workspace
-    command: tail -f /dev/null
     env_file:
       - .env
     ports:
       - "8545:8545"
       - "3000:3000"
+    stdin_open: true
+    tty: true
