@@ -36,8 +36,8 @@ contract AgentDAOToken is ERC20, ERC20Permit, Ownable {
         uint256 weiAmount = tokenAmount * 10**18;
         require(weiAmount <= balanceOf(address(this)), "Not enough tokens left");
         
-        // Fixed price: 1 ETH = 1,000,000 tokens
-        uint256 cost = (tokenAmount * 1e18) / 1_000_000;
+        // Fixed price: 1 ETH = 100,000,000 tokens (100M)
+        uint256 cost = (tokenAmount * 1e18) / 100_000_000;
         require(msg.value >= cost, "Insufficient ETH");
         
         // Refund excess ETH
@@ -56,8 +56,8 @@ contract AgentDAOToken is ERC20, ERC20Permit, Ownable {
      * @notice Get current ICO price
      */
     function getPrice() external pure returns (uint256) {
-        // 1 ETH = 1,000,000 tokens
-        return 1_000_000;
+        // 1 ETH = 100,000,000 tokens
+        return 100_000_000;
     }
     
     /**

@@ -32,16 +32,16 @@ contract AgentDAOTest is Test {
     }
     
     function test_ICOPrice() public {
-        assertEq(token.getPrice(), 1_000_000); // 1 ETH = 1M tokens
+        assertEq(token.getPrice(), 100_000_000); // 1 ETH = 100M tokens
     }
     
     function test_BuyTokens() public {
         vm.deal(agent1, 1 ether);
         
         vm.prank(agent1);
-        token.buyTokens{value: 1 ether}(1_000_000); // Buy 1M tokens (parameter is whole tokens)
+        token.buyTokens{value: 1 ether}(100_000_000); // Buy 100M tokens (1 ETH)
         
-        assertEq(token.balanceOf(agent1), 1_000_000 * 10**18);
+        assertEq(token.balanceOf(agent1), 100_000_000 * 10**18);
         assertEq(address(token).balance, 1 ether);
     }
     
@@ -58,6 +58,6 @@ contract AgentDAOTest is Test {
         
         vm.expectRevert("Insufficient ETH");
         vm.prank(agent1);
-        token.buyTokens{value: 0.5 ether}(1_000_000); // Should fail - not enough ETH
+        token.buyTokens{value: 0.5 ether}(100_000_000); // Should fail - needs 1 ETH for 100M tokens
     }
 }
