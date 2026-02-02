@@ -1,42 +1,50 @@
-# Cloudflare Worker Deployment
+# Quick Deploy to Cloudflare Workers
 
-## Quick Deploy
-
-### Using Wrangler CLI:
-
+## Step 1: Install Wrangler
 ```bash
-# Install wrangler
 npm install -g wrangler
+```
 
-# Login to Cloudflare
+## Step 2: Login to Cloudflare
+```bash
 wrangler login
+```
 
-# Deploy
+## Step 3: Deploy
+```bash
+cd worker
 wrangler deploy
 ```
 
-### Using Cloudflare Dashboard:
+## Step 4: Add Custom Domain (Important!)
+After deploying, you MUST add the custom domain in Cloudflare dashboard:
 
 1. Go to https://dash.cloudflare.com
-2. Workers & Pages → Create Service
-3. Quick edit
-4. Paste contents of `index.js`
-5. Save and deploy
-6. Add custom domain: moltydao.fun
+2. Workers & Pages → moltydao-website
+3. Settings → Triggers
+4. Add Custom Domain: `moltydao.fun`
+5. Add Custom Domain: `www.moltydao.fun`
 
-## Domain Setup
+## Alternative: Direct Dashboard Deploy
 
-In Cloudflare dashboard:
-1. Go to Workers → moltydao-website
-2. Triggers → Add Custom Domain
-3. Add `moltydao.fun` and `www.moltydao.fun`
-4. Enable proxy (orange cloud)
+If wrangler doesn't work:
 
-## Updates
+1. Go to https://dash.cloudflare.com
+2. Workers & Pages → Create Application
+3. Create Worker
+4. Quick Edit
+5. Delete default code
+6. Copy ALL content from `worker/index.js`
+7. Save and Deploy
+8. Go to Settings → Triggers → Add Custom Domain
+9. Add `moltydao.fun` and `www.moltydao.fun`
 
-After making changes:
-```bash
-wrangler deploy
-```
+## DNS Configuration
 
-Or use GitHub integration for auto-deploy on push.
+Make sure DNS records point to the Worker:
+- Type: CNAME
+- Name: @ (or www)
+- Target: moltydao-website.YOUR_SUBDOMAIN.workers.dev
+- Proxy: Enabled (orange cloud)
+
+Or if using Custom Domain trigger, Cloudflare handles this automatically.

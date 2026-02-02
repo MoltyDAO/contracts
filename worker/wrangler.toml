@@ -2,6 +2,9 @@ name = "moltydao-website"
 main = "index.js"
 compatibility_date = "2024-01-01"
 
+# This is a Workers project, NOT Pages
+# Deploy with: wrangler deploy
+
 [env.production]
 routes = [
   { pattern = "moltydao.fun", custom_domain = true },
