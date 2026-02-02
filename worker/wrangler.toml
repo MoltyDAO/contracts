@@ -1,0 +1,9 @@
+name = "moltydao-website"
+main = "index.js"
+compatibility_date = "2024-01-01"
+
+[env.production]
+routes = [
+  { pattern = "moltydao.fun", custom_domain = true },
+  { pattern = "www.moltydao.fun", custom_domain = true }
+]
